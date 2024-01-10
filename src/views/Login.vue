@@ -32,30 +32,30 @@ const login = () => {
   const loginData = new URLSearchParams();
   loginData.append('idNumber', idNumber.value);
   loginData.append('phoneNumber', phoneNumber.value);
-  // fetch(`https://db.explosion.tw/login`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/x-www-form-urlencoded',
+  fetch(`https://db.explosion.tw/login`, {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/x-www-form-urlencoded',
   //     // Add any other headers your API requires
-  //   },
-  //   // mode: 'cors',
-  //   credentials: 'include', // 將 'same-origin' 改為 'include'
-  //   body: loginData.toString()
-  // })
-  //   .then(response => response.json())
-  //   .then(data => {
+     },
+     // mode: 'cors',
+     credentials: 'include', // 將 'same-origin' 改為 'include'
+     body: loginData.toString()
+   })
+     .then(response => response.json())
+     .then(data => {
   //     // 處理響應數據
   //     console.log(data)
-  //     if (data['result'] === 1) {
+       if (data['result'] === 1) {
         // localStorage.setItem("fakeID", idNumber.value);
         router.replace('/home');
-    //   } else {
-    //     alert("登入失敗");
-    //   }
-    // })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    // });
+       } else {
+         alert("登入失敗");
+       }
+     })
+     .catch(error => {
+       console.error('Error:', error);
+     });
 };
 
 
